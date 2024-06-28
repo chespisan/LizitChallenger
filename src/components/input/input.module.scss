@@ -1,0 +1,7 @@
+.container {
+  @apply flex justify-center p-paddingSmall border border-tertiary rounded-borderRadiusMedium;
+
+  &__input {
+    @apply bg-transparent outline-none w-full;
+  }
+}

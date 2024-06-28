@@ -1,0 +1,19 @@
+.button {
+  @apply flex gap-2 items-center h-10 px-paddingLarge rounded-borderRadiusLarge text-white;
+
+  &--primary {
+    @apply bg-primary;
+  }
+
+  &--secondary {
+    @apply bg-secondary;
+  }
+
+  &--only-icon {
+    @apply p-0;
+  }
+
+  &--large {
+    @apply py-paddingLarge;
+  }
+}
