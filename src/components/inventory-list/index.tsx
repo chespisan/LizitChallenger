@@ -7,22 +7,29 @@ import { IInventoryList } from "./interfaces";
 import iconTrash from "/public/trash.svg";
 import iconFrame from "/public/frame.svg";
 import styles from "./inventory-list.module.scss";
+import { useRouter } from "next/navigation";
 
 export const InventoryListComponent: FC<IInventoryList> = ({
-  dataDetchMock,
-  textsHeader,
+  data,
+  headerTexts,
 }) => {
+  const navigation = useRouter();
+
+  const goToProductDetail = (productId: string) => {
+    navigation.push(`/inventory/${productId}?state=view`);
+  };
+
   return (
     <div className={styles["inventory-list__container"]}>
       <div className={styles["inventory-list__header"]}>
-        {textsHeader.map((text: string) => (
+        {headerTexts.map((text: string) => (
           <p key={text} className={styles["inventory-list__header-text"]}>
             {text}
           </p>
         ))}
       </div>
 
-      {dataDetchMock.map((product) => (
+      {data.map((product) => (
         <div key={product?.id} className={styles["inventory-list__products"]}>
           <div className={styles["inventory-list__products-img"]}>
             <Image
@@ -42,7 +49,11 @@ export const InventoryListComponent: FC<IInventoryList> = ({
           </p>
           <p className={styles["inventory-list__text"]}>${product.price}</p>
           <div className={styles["inventory-list__products-action"]}>
-            <ButtonComponent text="Ver" color="primary" action={() => {}} />
+            <ButtonComponent
+              text="Ver"
+              color="primary"
+              action={() => goToProductDetail(product?.id)}
+            />
 
             <ButtonComponent
               variant="only-icon"

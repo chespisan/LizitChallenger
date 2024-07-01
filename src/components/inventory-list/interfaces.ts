@@ -1,4 +1,4 @@
 export interface IInventoryList {
-  textsHeader: string[];
-  dataDetchMock: any[];
+  headerTexts: string[];
+  data: any[];
 }
