@@ -1,5 +1,5 @@
 .product-detail {
-  @apply flex  justify-center py-8 w-full;
+  @apply flex  justify-center py-12 w-full;
 
   &__content {
     @apply flex flex-col gap-20 w-9/12;
@@ -22,16 +22,18 @@
   }
 
   &__form {
-    @apply flex justify-between w-11/12;
+    @apply flex justify-between w-full;
   }
 
   &__fields {
-    @apply flex flex-col gap-6;
-    width: 50%;
+    @apply flex flex-col gap-6 w-3/6;
   }
 
   &__box-img {
-    width: 48%;
-    @apply bg-clearBlue;
+    @apply bg-clearBlue w-[48%];
+  }
+
+  &__actions {
+    @apply absolute bottom-10 flex items-center justify-end gap-2 w-9/12;
   }
 }

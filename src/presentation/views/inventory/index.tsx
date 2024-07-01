@@ -1,33 +1,24 @@
-"use client";
-import { FC, useContext, useEffect } from "react";
 import Image from "next/image";
 
-import { StoreContext } from "app/context/store-provider";
-import { SettingsContext } from "app/context/settings-provider";
 import {
   ButtonComponent,
   InputComponent,
   InventoryListComponent,
 } from "app/components";
 
+import { IInventoryView } from "app/presentation/views/inventory/interface";
+
+import styles from "app/presentation/views/inventory/inventory.module.scss";
+
 import iconPlusFolder from "/public/plus-folder.svg";
 import iconLizitLogo from "/public/lizit-logo.svg";
 import iconSearch from "/public/search.svg";
 
-import styles from "./inventory.module.scss";
-import { IInventoryView } from "./interface";
-
-export const InventoryView: FC<IInventoryView> = ({
+export const InventoryView = ({
   products,
   headerTexts,
-}) => {
-  const { addInventory } = useContext(StoreContext);
-  const { setShowModal } = useContext(SettingsContext);
-
-  useEffect(() => {
-    addInventory(products);
-  }, []);
-
+  setShowModal,
+}: IInventoryView) => {
   return (
     <div className={styles["invoice-view"]}>
       <div className={styles["invoice-view__header"]}>
@@ -36,7 +27,7 @@ export const InventoryView: FC<IInventoryView> = ({
           iconPath={iconPlusFolder}
           color="secondary"
           action={setShowModal}
-          size="large"
+          size="medium"
         />
 
         <Image
