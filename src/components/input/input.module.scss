@@ -1,7 +1,27 @@
-.container {
-  @apply flex justify-center p-paddingSmall border border-tertiary rounded-borderRadiusMedium;
+.input-container {
+  @apply flex flex-col gap-2;
+
+  &__input-label {
+    @apply text-primary;
+  }
+
+  &__input-label--disabled {
+    @apply text-gray;
+  }
+
+  &__content {
+    @apply flex gap-2 p-paddingSmall border border-tertiary relative rounded-borderRadiusMedium;
+  }
+
+  &__content--disabled {
+    @apply border-gray;
+  }
 
   &__input {
-    @apply bg-transparent outline-none w-full;
+    @apply bg-transparent outline-none w-11/12;
+  }
+
+  &__input-icon--end {
+    @apply absolute left-[92%];
   }
 }

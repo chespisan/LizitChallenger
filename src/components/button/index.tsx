@@ -15,17 +15,30 @@ export const ButtonComponent: FC<IButtonComponent> = ({
 }) => {
   const [sizeIcon, setSizeIcon] = useState<number>();
 
+  const formatSize = (size: string) => {
+    switch (size) {
+      case "small":
+        return 10;
+      case "medium":
+        return 24;
+      case "large":
+        return 34;
+      default:
+        return 24;
+    }
+  };
+
   useEffect(() => {
-    setSizeIcon(size === "large" ? 24 : 34);
+    setSizeIcon(formatSize(size));
   }, [size]);
 
   return (
     <button
       className={`
-        ${styles["button"]} 
-        ${styles[`button--${color}`]} 
-        ${styles[`button--${variant}`]}
-        ${styles[`button--${size}`]}
+        ${styles["button"] || ""} 
+        ${styles[`button--${color}`] || ""} 
+        ${styles[`button--${variant}`] || ""}
+        ${styles[`button--${size}`] || ""}
       `}
       onClick={action}
     >

@@ -16,4 +16,8 @@
   &--large {
     @apply py-paddingLarge;
   }
+
+  &--small {
+    @apply py-paddingSmall;
+  }
 }

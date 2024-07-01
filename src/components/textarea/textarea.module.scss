@@ -1,0 +1,19 @@
+.textarea-container {
+  @apply flex flex-col gap-2;
+
+  &__label {
+    @apply text-primary;
+  }
+
+  &__label--disabled {
+    @apply text-gray;
+  }
+
+  &__textarea {
+    @apply bg-transparent flex h-28 p-paddingSmall border border-tertiary outline-none relative rounded-borderRadiusMedium;
+  }
+
+  &__textarea--disabled {
+    @apply border-gray;
+  }
+}
