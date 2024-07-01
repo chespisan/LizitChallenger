@@ -17,6 +17,8 @@ const config: Config = {
       dark: "#494949",
       darkBlue: "#0A2F5B",
       danger: "#D73451",
+      white: "#FFFFFF",
+      transparent: "transparent",
     },
     extend: {
       backgroundImage: {
