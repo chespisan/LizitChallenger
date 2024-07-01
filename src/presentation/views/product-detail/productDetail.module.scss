@@ -1,0 +1,37 @@
+.product-detail {
+  @apply flex  justify-center py-8 w-full;
+
+  &__content {
+    @apply flex flex-col gap-20 w-9/12;
+  }
+
+  &__header {
+    @apply flex justify-between;
+  }
+
+  &__title {
+    @apply flex justify-center items-center gap-4;
+  }
+
+  &__title-text {
+    @apply text-darkBlue font-bold text-fontSizeLarge;
+  }
+
+  &__back-arrow {
+    @apply bg-clearBlue px-3 py-2 cursor-pointer rounded-borderRadiusSmall;
+  }
+
+  &__form {
+    @apply flex justify-between w-11/12;
+  }
+
+  &__fields {
+    @apply flex flex-col gap-6;
+    width: 50%;
+  }
+
+  &__box-img {
+    width: 48%;
+    @apply bg-clearBlue;
+  }
+}
