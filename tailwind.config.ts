@@ -33,7 +33,7 @@ const config: Config = {
       },
       fontSize: {
         fontSizeSmall: "10px",
-        fontSizeMedium: "12px",
+        fontSizeMedium: "14px",
         fontSizeLarge: "25px",
       },
       margin: {
