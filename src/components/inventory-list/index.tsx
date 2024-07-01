@@ -15,8 +15,8 @@ export const InventoryListComponent: FC<IInventoryList> = ({
 }) => {
   const navigation = useRouter();
 
-  const goToProductDetail = (productId: string) => {
-    navigation.push(`/inventory/${productId}?state=view`);
+  const goToProductDetail = (productId: string, type: string) => {
+    navigation.push(`/inventory/${productId}?state=${type}Product`);
   };
 
   return (
@@ -52,19 +52,21 @@ export const InventoryListComponent: FC<IInventoryList> = ({
             <ButtonComponent
               text="Ver"
               color="primary"
-              action={() => goToProductDetail(product?.id)}
+              action={() => goToProductDetail(product?.id, "view")}
             />
 
             <ButtonComponent
               variant="only-icon"
               iconPath={iconFrame}
-              action={() => {}}
+              action={() => goToProductDetail(product?.id, "edit")}
+              size="large"
             />
 
             <ButtonComponent
               variant="only-icon"
               iconPath={iconTrash}
               action={() => {}}
+              size="large"
             />
           </div>
         </div>

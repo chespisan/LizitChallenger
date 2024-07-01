@@ -18,11 +18,13 @@ export const ButtonComponent: FC<IButtonComponent> = ({
   const formatSize = (size: string) => {
     switch (size) {
       case "small":
-        return 10;
+        return 12;
       case "medium":
         return 24;
       case "large":
         return 34;
+      case "x-large":
+        return 42;
       default:
         return 24;
     }

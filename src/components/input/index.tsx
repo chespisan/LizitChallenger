@@ -1,22 +1,9 @@
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
-import styles from "./input.module.scss";
-import { useEffect, useState } from "react";
+import { IInputComponent } from "app/components/input/interface";
 
-export type TInputVariants = "start" | "end";
-export type TInputIconSize = "sm" | "md";
-
-export interface IInputComponent {
-  iconPath?: string;
-  label?: string;
-  variant?: TInputVariants;
-  placeholder?: string;
-  value?: string;
-  onChange?: (event: React.FormEvent<HTMLInputElement>) => void;
-  sizeIcon?: TInputIconSize;
-  name?: any;
-  disabled?: boolean;
-}
+import styles from "app/components/input/input.module.scss";
 
 export const InputComponent = ({
   iconPath,
@@ -50,7 +37,7 @@ export const InputComponent = ({
       <div
         className={`
         ${styles["input-container__content"]}
-        ${styles["input-container__content--disabled"]}
+        ${disabled ? styles["input-container__content--disabled"] : ""}
       `}
       >
         {variant && iconPath && (
