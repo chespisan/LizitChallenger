@@ -1,9 +1,11 @@
 import { createContext } from "react";
 import { useStoreState } from "app/hooks";
 import { ProductEntity } from "app/domain";
+import { IFormInput } from "app/components/form-product/interface";
 
 export interface IStoreContext {
   addInventory: (payload: ProductEntity[]) => void;
+  updateProduct: (productId: string, product: IFormInput) => void;
   getProduct: (productId: string) => ProductEntity | undefined;
   state: {
     categories: string[];
@@ -13,6 +15,7 @@ export interface IStoreContext {
 
 export const StoreContext = createContext<IStoreContext>({
   addInventory: () => {},
+  updateProduct: () => {},
   getProduct: () => undefined,
   state: {
     categories: [],
