@@ -1,22 +1,14 @@
 import { createContext } from "react";
-import { useStoreState } from "app/hooks";
-import { ProductEntity } from "app/domain";
-import { IFormInput } from "app/components/form-product/interface";
 
-export interface IStoreContext {
-  addInventory: (payload: ProductEntity[]) => void;
-  updateProduct: (productId: string, product: IFormInput) => void;
-  getProduct: (productId: string) => ProductEntity | undefined;
-  state: {
-    categories: string[];
-    products: ProductEntity[];
-  };
-}
+import { useStoreState } from "app/hooks";
+import { IStoreContext } from "app/context/store-provider/interface";
 
 export const StoreContext = createContext<IStoreContext>({
   addInventory: () => {},
+  addProduct: () => {},
   updateProduct: () => {},
   getProduct: () => undefined,
+  deleteProduct: () => {},
   state: {
     categories: [],
     products: [],

@@ -1,10 +1,15 @@
 import { createContext } from "react";
 
 import { useSettingsState } from "app/hooks";
+import { ISettingsContext } from "app/context/settings-provider/interface";
 
-export const SettingsContext = createContext({
-  state: { showModal: false },
-  setShowModal: () => {},
+export const SettingsContext = createContext<ISettingsContext>({
+  state: {
+    showModal: false,
+    type: undefined,
+    info: undefined,
+  },
+  setShowModal: (type?: string, info?: any) => {},
 });
 
 export const SettingsProvider = ({

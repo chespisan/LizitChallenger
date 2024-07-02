@@ -2,6 +2,8 @@ import { useState } from "react";
 
 export interface ISettingsState {
   showModal: boolean;
+  type?: string;
+  info?: any;
 }
 
 const settingsState: ISettingsState = {
@@ -11,8 +13,8 @@ const settingsState: ISettingsState = {
 export const useSettingsState = () => {
   const [state, setState] = useState(settingsState);
 
-  const setShowModal = () => {
-    setState({ ...state, showModal: !state.showModal });
+  const setShowModal = (type?: string, info?: any) => {
+    setState({ ...state, showModal: !state.showModal, type, info });
   };
 
   return {
