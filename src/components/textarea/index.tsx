@@ -1,5 +1,6 @@
-import { ITextareaComponent } from "./interface";
-import styles from "./textarea.module.scss";
+import { ITextareaComponent } from "app/components/textarea/interface";
+
+import styles from "app/components/textarea/textarea.module.scss";
 
 export const TextAreaComponent = ({
   disabled,

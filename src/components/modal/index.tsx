@@ -1,15 +1,15 @@
 "use client";
 
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
-import { SettingsContext } from "app/context/settings-provider";
 import { ProductDetailContainer } from "app/presentation/containers";
+import { SettingsContext } from "app/context/settings-provider";
+import { StoreContext } from "app/context/store-provider";
 import { ButtonComponent } from "app/components";
 
 import styles from "app/components/modal/modal.module.scss";
 
 import iconClose from "/public/close.svg";
-import { StoreContext } from "app/context/store-provider";
 
 export const ModalComponent = () => {
   const { state, setShowModal } = useContext(SettingsContext);

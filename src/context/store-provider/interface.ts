@@ -1,5 +1,5 @@
-import { IFormInput } from "app/components/form-product/interface";
 import { ProductEntity } from "app/domain";
+import { IFormInput } from "app/components/form-product/interface";
 
 export interface IStoreContext {
   addInventory: (payload: ProductEntity[]) => void;

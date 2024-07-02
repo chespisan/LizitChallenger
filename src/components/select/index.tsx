@@ -1,5 +1,6 @@
-import { ISelectComponent } from "./interface";
-import styles from "./select.module.scss";
+import { ISelectComponent } from "app/components/select/interface";
+
+import styles from "app/components/select/select.module.scss";
 
 export const SelectComponent = ({
   label,

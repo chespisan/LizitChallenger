@@ -1,7 +1,7 @@
 "use client";
 
-import { SettingsProvider } from "./settings-provider";
-import { StoreProvider } from "./store-provider";
+import { SettingsProvider } from "app/context/settings-provider";
+import { StoreProvider } from "app/context/store-provider";
 
 export const ContextProviders = ({
   children,

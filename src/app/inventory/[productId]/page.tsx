@@ -3,7 +3,6 @@ import { ProductDetailContainer } from "app/presentation/containers";
 
 export default function ProductDetail(props: IProductDetail) {
   const { params, searchParams } = props;
-  console.log("props", props);
 
   return (
     <ProductDetailContainer

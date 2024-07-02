@@ -1,14 +1,15 @@
-import { FC, useContext } from "react";
 import Image from "next/image";
+import { FC, useContext } from "react";
+import { useRouter } from "next/navigation";
 
-import { ButtonComponent } from "../button";
-import { IInventoryList } from "./interfaces";
+import { SettingsContext } from "app/context/settings-provider";
+import { ButtonComponent } from "app/components/button";
+import { IInventoryList } from "app/components/inventory-list/interfaces";
 
 import iconTrash from "/public/trash.svg";
 import iconFrame from "/public/frame.svg";
-import styles from "./inventory-list.module.scss";
-import { useRouter } from "next/navigation";
-import { SettingsContext } from "app/context/settings-provider";
+
+import styles from "app/components/inventory-list/inventory-list.module.scss";
 
 export const InventoryListComponent: FC<IInventoryList> = ({
   data,
