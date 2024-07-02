@@ -22,11 +22,30 @@ export const ProductDetailView = ({
   state = "addProduct",
   control,
   optionCategories,
+  radioOptions,
+  inputImg,
+  onChangeRadio,
+  onChangeInput,
+  addImgToProduct,
 }: IProductDetailView) => {
   return (
-    <div className={styles["product-detail"]}>
-      <div className={styles["product-detail__content"]}>
-        <>
+    <div
+      className={`
+      ${styles["product-detail"]}
+      ${state === "addProduct" ? styles["product-detail--modal"] : ""}
+    `}
+    >
+      <div
+        className={`
+      ${styles["product-detail__content"]}
+      ${
+        state === "addProduct"
+          ? styles["product-detail__content--modal"]
+          : "lol"
+      }  
+      `}
+      >
+        <div className={styles["product-detail__box-up"]}>
           {state !== "addProduct" && (
             <div className={styles["product-detail__header"]}>
               <div className={styles["product-detail__title"]}>
@@ -122,19 +141,93 @@ export const ProductDetailView = ({
                 )}
               />
             </form>
+            {state === "addProduct" ? (
+              <div className={styles["product-detail__box-img"]}>
+                <h6 className={styles["product-detail__title-box"]}>
+                  Imágenes
+                </h6>
 
-            <div className={styles["product-detail__box-img"]}>
-              <h6>Imágenes</h6>
+                <p>Añada los links de las imágenes relacionadas al producto.</p>
 
-              <p>Añada los links de las imágenes relacionadas al producto.</p>
+                <div className={styles["product-detail__add-img"]}>
+                  <div className={styles["product-detail__input"]}>
+                    <InputComponent
+                      fill="solid"
+                      onChange={(e) => onChangeInput(e)}
+                      value={inputImg}
+                    />
+                  </div>
+                  <ButtonComponent
+                    color="primary"
+                    text="Agregar"
+                    action={addImgToProduct}
+                  />
+                </div>
 
-              <div>
-                {/* <InputComponent /> */}
-                <ButtonComponent text="Agregar" action={() => {}} />
+                <div className={styles["product-detail__box-img-principal"]}>
+                  <p>Selecciona la imagen principal</p>
+
+                  <form className={styles["product-detail__box-img-form"]}>
+                    {radioOptions.map((radio) => (
+                      <div className={styles["product-detail__box-radio"]}>
+                        <input
+                          type="radio"
+                          name={radio.name}
+                          disabled={radio.disabled}
+                          checked={radio.checked}
+                          onChange={() => onChangeRadio(radio)}
+                        />
+                        <div
+                          className={`
+                         ${styles["product-detail__box-radio-fake"]}
+                         ${
+                           radio.checked
+                             ? styles["product-detail__box-radio--checked"]
+                             : ""
+                         }
+                         `}
+                        >
+                          {radio?.imgPath && (
+                            <Image
+                              src={radio.imgPath}
+                              alt="Img - product"
+                              unoptimized
+                              width={40}
+                              height={40}
+                            />
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </form>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className={styles["product-detail__container-imgs"]}>
+                <Image
+                  className={styles["product-detail__img-principal"]}
+                  src={product?.image || ""}
+                  alt="Lizit - Logo"
+                  unoptimized
+                  width={300}
+                  height={200}
+                />
+                <div className={styles["product-detail__img-gallery"]}>
+                  {product?.images?.map((image) => (
+                    <Image
+                      className={styles["product-detail__img-principal"]}
+                      src={image}
+                      alt="Lizit - Logo"
+                      unoptimized
+                      width={60}
+                      height={60}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
-        </>
+        </div>
 
         <div className={styles["product-detail__actions"]}>
           {actions?.map((action) => (
@@ -144,6 +237,7 @@ export const ProductDetailView = ({
               color={action.color}
               action={action.onClick}
               size={action.size}
+              disabled={action.disabled}
             />
           ))}
         </div>

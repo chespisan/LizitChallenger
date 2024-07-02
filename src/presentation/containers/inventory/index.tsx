@@ -1,10 +1,11 @@
 "use client";
 
+import { useContext, useEffect } from "react";
+
+import { ProductEntity } from "app/domain";
 import { SettingsContext } from "app/context/settings-provider";
 import { StoreContext } from "app/context/store-provider";
-import { ProductEntity } from "app/domain";
 import { InventoryView } from "app/presentation/views";
-import { useContext, useEffect } from "react";
 
 const headerTexts = [
   "Foto",
@@ -29,7 +30,7 @@ export const InventoryContainer = ({ products }: any) => {
   };
 
   useEffect(() => {
-    if (productstState.length) {
+    if (productstState.length && products) {
       const res = compareArrayProducts(products, productstState);
       if (!res) {
         addInventory(productstState);

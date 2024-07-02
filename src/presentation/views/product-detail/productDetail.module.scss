@@ -1,8 +1,20 @@
 .product-detail {
   @apply flex  justify-center py-12 w-full;
 
+  &--modal {
+    @apply py-0;
+  }
+
   &__content {
-    @apply flex flex-col gap-20 w-9/12;
+    @apply flex flex-col justify-between h-[90vh] w-9/12;
+  }
+
+  &__content--modal {
+    @apply h-[60vh] w-11/12;
+  }
+
+  &__box-up {
+    @apply flex flex-col gap-20 w-full;
   }
 
   &__header {
@@ -30,10 +42,54 @@
   }
 
   &__box-img {
-    @apply bg-clearBlue w-[48%];
+    @apply bg-clearBlue flex flex-col gap-4 px-8 py-14 rounded-borderRadiusLarge w-[48%];
+  }
+
+  &__title-box {
+    @apply font-bold text-primary;
+  }
+
+  &__add-img {
+    @apply flex items-center gap-4;
+  }
+
+  &__box-img-principal {
+    @apply flex flex-col items-center gap-4 mt-12;
+  }
+
+  &__box-img-form {
+    @apply flex justify-between w-full;
+  }
+
+  &__box-radio {
+    @apply flex flex-col items-center gap-4;
+  }
+
+  &__box-radio-fake {
+    @apply bg-white flex justify-center items-center h-16 rounded-borderRadiusSmall w-16;
+  }
+
+  &__box-radio--checked {
+    @apply border border-primary;
+  }
+
+  &__input {
+    @apply w-full;
+  }
+
+  &__container-imgs {
+    @apply flex justify-center items-center gap-2 w-[48%];
+  }
+
+  &__img-principal {
+    @apply rounded-borderRadiusLarge;
+  }
+
+  &__img-gallery {
+    @apply flex flex-col gap-4;
   }
 
   &__actions {
-    @apply absolute bottom-10 flex items-center justify-end gap-2 w-9/12;
+    @apply flex justify-end items-end justify-end gap-2 w-full;
   }
 }

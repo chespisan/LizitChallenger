@@ -1,15 +1,23 @@
 "use client";
+
+import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import { ProductEntity } from "app/domain";
 import { StoreContext } from "app/context/store-provider";
 import { ProductDetailView } from "app/presentation/views";
-import { useRouter } from "next/navigation";
 import { IOptionsSelect } from "app/components/select/interface";
 import { IFormInput } from "app/components/form-product/interface";
-import { SubmitHandler, useForm } from "react-hook-form";
 
-import { IProductDetailContainer, IActions } from "./interface";
+import {
+  IProductDetailContainer,
+  IActions,
+  IRadioOptions,
+} from "app/presentation/containers/product-detail/interface";
+import { SettingsContext } from "app/context/settings-provider";
+
+let flag = 0;
 
 export const ProductDetailContainer = ({
   productId,
@@ -21,14 +29,23 @@ export const ProductDetailContainer = ({
     []
   );
   const [actions, setActions] = useState<IActions[]>([]);
+  const [radioOptions, setRadioOptions] = useState<IRadioOptions[]>([]);
+  const [inputImg, setInputImgValue] = useState("");
 
+  const { setShowModal } = useContext(SettingsContext);
   const {
+    addProduct,
     getProduct,
     updateProduct,
-    state: { categories, products },
+    state: { categories },
   } = useContext(StoreContext);
 
-  const { handleSubmit, control, setValue } = useForm<IFormInput>({
+  const {
+    handleSubmit,
+    control,
+    setValue,
+    formState: { isValid },
+  } = useForm<IFormInput>({
     defaultValues: {
       name: "",
       category: "",
@@ -36,11 +53,50 @@ export const ProductDetailContainer = ({
       baseRate: "",
     },
   });
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    updateProduct(productId, data);
-  };
 
-  const goBack = () => navigation.back();
+  const options: IRadioOptions[] = [
+    {
+      id: 1,
+      checked: false,
+      imgPath: "",
+      name: "img-1",
+      disabled: true,
+    },
+    {
+      id: 2,
+      checked: false,
+      imgPath: "",
+      name: "img-2",
+      disabled: true,
+    },
+    {
+      id: 3,
+      checked: false,
+      imgPath: "",
+      name: "img-3",
+      disabled: true,
+    },
+    {
+      id: 4,
+      checked: false,
+      imgPath: "",
+      name: "img-4",
+      disabled: true,
+    },
+    {
+      id: 5,
+      checked: false,
+      imgPath: "",
+      name: "img-5",
+      disabled: true,
+    },
+  ];
+
+  const goBack = () => {
+    setRadioOptions([]);
+    setInputImgValue("");
+    navigation.back();
+  };
 
   const formatCategories = () => {
     const response = categories.map((category) => ({
@@ -60,11 +116,88 @@ export const ProductDetailContainer = ({
     }
   };
 
-  const deleteProduct = () => {};
+  const checkURL = (url: string) => {
+    return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
+  };
+
   const changeStateToEditProduct = () => {
     navigation.replace(`/inventory/${productId}?state=editProduct`);
   };
-  const addProduct = () => {};
+
+  const addImgToProduct = () => {
+    if (inputImg && flag <= 4) {
+      const verify = checkURL(inputImg);
+      if (!verify) return;
+
+      const updatedRadioOptions = radioOptions?.map((radio, index) => {
+        radio.checked = false;
+
+        if (index === flag) {
+          radio.checked = true;
+          radio.imgPath = inputImg;
+          radio.disabled = false;
+        }
+        return radio;
+      });
+      setRadioOptions(updatedRadioOptions);
+      setInputImgValue("");
+      flag += 1;
+    }
+  };
+
+  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputImgValue(event.target.value);
+  };
+
+  const onChangeRadio = (option: IRadioOptions) => {
+    const updatedRadioOptions = radioOptions?.map((radio, index) => {
+      radio.checked = false;
+      if (index + 1 === option.id) {
+        radio.checked = true;
+      }
+      setInputImgValue(radio.imgPath);
+      return radio;
+    });
+    setRadioOptions(updatedRadioOptions);
+  };
+
+  const addOrUpdateProduct: SubmitHandler<IFormInput> = (data) => {
+    if (params.state === "addProduct") {
+      let images: string[] = [];
+      let imagePrincipal = "";
+      radioOptions?.forEach((option) => {
+        if (option.imgPath) {
+          if (option.checked) imagePrincipal = option.imgPath;
+          images.push(option.imgPath);
+        }
+      });
+
+      const newProduct: ProductEntity = {
+        id: 0,
+        title: data.name,
+        category: data.category,
+        description: data.description,
+        price: parseFloat(data.baseRate),
+        image: imagePrincipal,
+        images,
+        rating: {
+          rate: 3.6,
+          count: 145,
+        },
+      };
+
+      addProduct(newProduct);
+      setRadioOptions([]);
+      setInputImgValue("");
+      return;
+    }
+    updateProduct(productId!, data);
+  };
+
+  const deleteProduct = () => {
+    setShowModal("deleteProduct", { productId });
+    navigation.back();
+  };
 
   const generateActions = () => {
     switch (params.state) {
@@ -72,9 +205,9 @@ export const ProductDetailContainer = ({
         setActions([
           {
             label: "Guardar",
-            onClick: addProduct,
+            onClick: handleSubmit(addOrUpdateProduct),
             color: "primary",
-            disabled: true,
+            disabled: !isValid,
             size: "x-large",
           },
         ]);
@@ -111,7 +244,7 @@ export const ProductDetailContainer = ({
           },
           {
             label: "Guardar",
-            onClick: handleSubmit(onSubmit),
+            onClick: handleSubmit(addOrUpdateProduct),
             color: "secondary",
             size: "x-large",
           },
@@ -130,14 +263,15 @@ export const ProductDetailContainer = ({
 
   useEffect(() => {
     generateActions();
-  }, [params.state]);
+  }, [params.state, isValid]);
 
   useEffect(() => {
-    const currentProduct = getProduct(productId);
+    const currentProduct = getProduct(productId!);
 
     if (!currentProduct && params.state !== "addProduct")
       navigation.replace("/");
     setProduct(currentProduct);
+    setRadioOptions(options);
   }, []);
 
   return (
@@ -148,6 +282,11 @@ export const ProductDetailContainer = ({
       control={control}
       optionCategories={optionCategories}
       actions={actions}
+      radioOptions={radioOptions!}
+      inputImg={inputImg}
+      onChangeRadio={onChangeRadio}
+      addImgToProduct={addImgToProduct}
+      onChangeInput={onChangeInput}
     />
   );
 };
