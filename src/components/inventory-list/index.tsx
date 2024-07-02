@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import Image from "next/image";
 
 import { ButtonComponent } from "../button";
@@ -8,15 +8,21 @@ import iconTrash from "/public/trash.svg";
 import iconFrame from "/public/frame.svg";
 import styles from "./inventory-list.module.scss";
 import { useRouter } from "next/navigation";
+import { SettingsContext } from "app/context/settings-provider";
 
 export const InventoryListComponent: FC<IInventoryList> = ({
   data,
   headerTexts,
 }) => {
+  const { setShowModal } = useContext(SettingsContext);
   const navigation = useRouter();
 
   const goToProductDetail = (productId: string, type: string) => {
     navigation.push(`/inventory/${productId}?state=${type}Product`);
+  };
+
+  const deleteProduct = (productId: string) => {
+    setShowModal("deleteProduct", { productId });
   };
 
   return (
@@ -65,7 +71,7 @@ export const InventoryListComponent: FC<IInventoryList> = ({
             <ButtonComponent
               variant="only-icon"
               iconPath={iconTrash}
-              action={() => {}}
+              action={() => deleteProduct(product?.id)}
               size="large"
             />
           </div>

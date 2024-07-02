@@ -1,48 +1,31 @@
 .modal-container {
-  @apply bg-gray;
-  height: 100vh;
-  width: 100vw;
-  position: absolute;
-  top: 0;
+  @apply bg-gray absolute top-0 flex items-center justify-center h-screen w-screen;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &__form-product {
-    background-color: #fff;
-    border-radius: 32px;
-    height: 80vh;
-    padding: 24px;
-    width: 80%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 42px;
+  &__card {
+    @apply bg-white flex flex-col items-center justify-center gap-11 p-paddingLarge rounded-borderRadiusLarge w-[80%];
   }
 
-  &__content {
-    display: flex;
-    justify-content: space-between;
-    width: 94%;
+  &__card--delete-product {
+    @apply w-2/4;
   }
 
-  &__fields {
-    @apply flex flex-col gap-6;
-    width: 50%;
+  &__action-close {
+    @apply cursor-pointer flex items-center justify-end w-[94%];
   }
 
-  &__box-img {
-    width: 48%;
-    @apply bg-clearBlue;
+  &__action-close--delete-product {
+    @apply w-full;
   }
 
-  &__action-close,
-  &__action-save {
-    @apply flex items-center justify-end;
-    width: 94%;
-    cursor: pointer;
+  &__delete-product {
+    @apply flex flex-col gap-10 mt-[-40px];
+  }
+
+  &__title {
+    @apply text-fontSizeLarge text-darkBlue;
+  }
+
+  &__actions-delete-product {
+    @apply flex items-center justify-center gap-6;
   }
 }
