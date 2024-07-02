@@ -11,6 +11,7 @@ export interface ProductEntity {
   category: string;
   image: string;
   rating: RatingEntity;
+  images?: string[];
 }
 
 export interface InventoryEntity {
