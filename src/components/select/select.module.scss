@@ -1,0 +1,29 @@
+.select-container {
+  @apply flex flex-col gap-2;
+  &__content {
+    @apply relative;
+  }
+  &__select {
+    @apply flex p-paddingSmall border border-tertiary outline-none relative rounded-borderRadiusMedium w-full;
+
+    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png)
+      no-repeat right;
+    -webkit-appearance: none;
+    appearance: none;
+    background-repeat: no-repeat;
+    background-position: right 0.7rem top 50%;
+    background-size: 0.65rem auto;
+  }
+
+  &__select--disabled {
+    @apply border-gray;
+  }
+
+  &__select-label {
+    @apply text-primary;
+  }
+
+  &__select-label--disabled {
+    @apply text-gray;
+  }
+}

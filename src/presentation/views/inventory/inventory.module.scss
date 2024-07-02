@@ -1,0 +1,12 @@
+.invoice-view {
+  @apply flex flex-col gap-8 items-center justify-center py-8 w-screen;
+
+  &__header,
+  &__container-input {
+    @apply flex justify-between w-9/12;
+  }
+
+  &__input {
+    @apply w-4/12;
+  }
+}

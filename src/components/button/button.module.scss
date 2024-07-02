@@ -1,0 +1,34 @@
+.button {
+  @apply flex gap-2 items-center h-10 px-paddingLarge rounded-borderRadiusLarge text-fontSizeMedium text-white;
+
+  &--primary {
+    @apply bg-primary;
+  }
+
+  &--secondary {
+    @apply bg-secondary;
+  }
+  &--danger {
+    @apply bg-danger;
+  }
+
+  &--disabled {
+    @apply bg-gray;
+  }
+
+  &--outline {
+    @apply bg-transparent border border-secondary text-secondary;
+  }
+
+  &--only-icon {
+    @apply p-0;
+  }
+
+  &--x-large {
+    @apply py-paddingMedium place-content-center w-52;
+  }
+
+  &--small {
+    @apply py-paddingSmall;
+  }
+}

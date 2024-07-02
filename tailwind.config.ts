@@ -17,6 +17,8 @@ const config: Config = {
       dark: "#494949",
       darkBlue: "#0A2F5B",
       danger: "#D73451",
+      white: "#FFFFFF",
+      transparent: "transparent",
     },
     extend: {
       backgroundImage: {
@@ -31,7 +33,7 @@ const config: Config = {
       },
       fontSize: {
         fontSizeSmall: "10px",
-        fontSizeMedium: "12px",
+        fontSizeMedium: "14px",
         fontSizeLarge: "25px",
       },
       margin: {
