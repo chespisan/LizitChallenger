@@ -1,13 +1,14 @@
-import { FC, useEffect, useState } from "react";
 import Image from "next/image";
+import { FC, useEffect, useState } from "react";
 
-import { IButtonComponent } from "./interfaces";
+import { IButtonComponent } from "app/components/button/interfaces";
 
-import styles from "./button.module.scss";
+import styles from "app/components/button/button.module.scss";
 
 export const ButtonComponent: FC<IButtonComponent> = ({
   action,
   color,
+  disabled = false,
   iconPath,
   size = "medium",
   text,
@@ -41,8 +42,10 @@ export const ButtonComponent: FC<IButtonComponent> = ({
         ${styles[`button--${color}`] || ""} 
         ${styles[`button--${variant}`] || ""}
         ${styles[`button--${size}`] || ""}
+        ${disabled ? styles[`button--disabled`] : ""}
       `}
       onClick={action}
+      disabled={disabled}
     >
       {iconPath && (
         <Image

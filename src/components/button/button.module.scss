@@ -12,6 +12,10 @@
     @apply bg-danger;
   }
 
+  &--disabled {
+    @apply bg-gray;
+  }
+
   &--outline {
     @apply bg-transparent border border-secondary text-secondary;
   }

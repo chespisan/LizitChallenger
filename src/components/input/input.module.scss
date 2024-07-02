@@ -21,6 +21,10 @@
     @apply bg-transparent outline-none w-11/12;
   }
 
+  &__input--solid {
+    @apply bg-white;
+  }
+
   &__input-icon--end {
     @apply absolute left-[92%];
   }

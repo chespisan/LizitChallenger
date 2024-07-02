@@ -7,8 +7,9 @@ export interface IInputComponent {
   variant?: TInputVariants;
   placeholder?: string;
   value?: string;
-  onChange?: (event: React.FormEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   sizeIcon?: TInputIconSize;
   name?: any;
   disabled?: boolean;
+  fill?: "solid" | "outline";
 }

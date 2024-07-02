@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 import { IInputComponent } from "app/components/input/interface";
 
@@ -15,6 +15,7 @@ export const InputComponent = ({
   variant,
   sizeIcon,
   name,
+  fill,
 }: IInputComponent) => {
   const [size, setSize] = useState(0);
 
@@ -38,6 +39,7 @@ export const InputComponent = ({
         className={`
         ${styles["input-container__content"]}
         ${disabled ? styles["input-container__content--disabled"] : ""}
+        ${fill === "solid" ? styles["input-container__input--solid"] : ""}
       `}
       >
         {variant && iconPath && (
