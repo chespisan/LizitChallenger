@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Descripción
 
-## Getting Started
+Se desarrollo una app(web) con las tecnologias Tailwind, Nextjs, simulando un challenger de Lizit,
+Consta de una vista de inventario, donde se listan todos los productos y se tienene acciones para ver, editar y eliminar productos, asi mismo cuenta con un sistema de modal para crear un poroducto y eliminar,
+y una vista final donde muestra el detalle de un producto.
 
-First, run the development server:
+Se utilizaron las tecnologias mensionadas, con practicas enfocadas a clean code, escabilidad, mantenimiento y con una arquitectura basada en "Arquitectura Hexagonal" algunos patrones mas.
+
+Asi mismo se utilizo Tailwind para todo el manejo de estilos y configuracion del design system, junto a Sass para mejorar
+su lectura y escabilidad
+
+## Tecnologías
+
+- React 18
+- Nextjs 14
+- Dass 1.77
+- Typescript 5
+
+## Running the app
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Local Web
+$ npm run dev
+
+# build
+$ npm run build
+
+# Lint - Formatter
+$ npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environments
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Revisar el archivo .env.example, donde manejamos 2 env para este challenger,
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- FAKESTOREAPI=https://fakestoreapi.com
+- API_LOCAL=http://localhost:3000
